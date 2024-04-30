@@ -1,0 +1,289 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Object {
+  id                  Int     @id @default(autoincrement())
+  name                String
+  is_studio           Boolean
+  floor               Int
+  floors_in_building  Int
+  total_area          Int
+  live_area           Int
+  kitchen_area        Int
+  rooms_area          Int
+  price               Int
+  price_per_square    String
+  price_type          String
+  is_apartment        Boolean
+  is_luxury           Boolean
+  ceiling_height      String
+  combined_bath_count String
+  separate_bath_count String
+  loggia_count        String
+  loggia_description  String
+  balcony_count       String
+  balcony_description String
+  general_description String
+  cadastr_number      String
+  document            String
+  layout              String
+  fotos               String
+  online_show         String
+  video               String
+
+  object_type        ObjectType[]
+  object_category    ObjectCategory[]
+  object_status      ObjectStatus[]
+  currency           Currency[]
+  renovation         Renovation[]
+  windowSide         WindowSide[]
+  room_type          RoomType[]
+  ownership          OwnerShip[]
+  reason_deleting    ReasonDeleting[]
+  owner_coorperation OwnerCoorporation[]
+  relationship_type  RelationshipType[]
+}
+
+model Realtor {
+  id               Int      @id @default(autoincrement())
+  is_active        Boolean
+  reg_date         DateTime
+  deactivated_date DateTime
+  photo            String
+  login            String
+  password         String
+  firma            Firma[]
+}
+
+model Firma {
+  id        Int      @id @default(autoincrement())
+  name      String
+  Realtor   Realtor? @relation(fields: [realtorId], references: [id])
+  realtorId Int?
+}
+
+model ObjectType {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+
+  residenceType ResidenceType[]
+}
+
+model ResidenceType {
+  id          Int          @id @default(autoincrement())
+  name        String
+  object_type ObjectType[]
+}
+
+model ObjectCategory {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model ObjectStatus {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model Currency {
+  id       Int     @id @default(autoincrement())
+  name     String
+  rate     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model Renovation {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model WindowSide {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model RoomType {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model OwnerShip {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model ReasonDeleting {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model OwnerCoorporation {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model RelationshipType {
+  id       Int     @id @default(autoincrement())
+  name     String
+  Object   Object? @relation(fields: [objectId], references: [id])
+  objectId Int?
+}
+
+model Address {
+  id                   Int        @id @default(autoincrement())
+  region               Region[]
+  district             District[]
+  area                 Area[]
+  mahalla              Mahalla[]
+  street               Street[]
+  house_number         Int
+  apartment_number     Int
+  location             String
+  landmark             String
+  metro                Metro[]
+  location_description String
+}
+
+model Region {
+  id         Int       @id @default(autoincrement())
+  name       String
+  District   District? @relation(fields: [districtId], references: [id])
+  districtId Int?
+  Address    Address?  @relation(fields: [addressId], references: [id])
+  addressId  Int?
+}
+
+model District {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  region    Region[]
+  Address   Address? @relation(fields: [addressId], references: [id])
+  addressId Int?
+}
+
+model Area {
+  id        Int      @id @default(autoincrement())
+  name      String
+  Address   Address? @relation(fields: [addressId], references: [id])
+  addressId Int?
+}
+
+model Mahalla {
+  id        Int      @id @default(autoincrement())
+  name      String
+  Address   Address? @relation(fields: [addressId], references: [id])
+  addressId Int?
+}
+
+model Street {
+  id        Int      @id @default(autoincrement())
+  name      String
+  Address   Address? @relation(fields: [addressId], references: [id])
+  addressId Int?
+}
+
+model Metro {
+  id        Int      @id @default(autoincrement())
+  name      String
+  Address   Address? @relation(fields: [addressId], references: [id])
+  addressId Int?
+}
+
+model BuildingCharacter {
+  id                        Int                 @id @default(autoincrement())
+  building_condition        BuildingCondition[]
+  building_seria            BuildingSeria[]
+  building_year             DateTime
+  wallmaterial              WallMaterial[]
+  overlaps                  Overlaps[]
+  watersupply               WaterSupply[]
+  heating_system            HeatingSystem[]
+  is_gas                    Boolean
+  is_electric               Boolean
+  passenger_elevators_count Int
+  freight_elevators_count   Int
+  is_building_security      Boolean
+  parking                   Parking[]
+  is_demolition_planned     String
+}
+
+model BuildingCondition {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model BuildingSeria {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model WallMaterial {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model Overlaps {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model WaterSupply {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model Parking {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
+
+model HeatingSystem {
+  id                  Int                @id @default(autoincrement())
+  name                String
+  BuildingCharacter   BuildingCharacter? @relation(fields: [buildingCharacterId], references: [id])
+  buildingCharacterId Int?
+}
