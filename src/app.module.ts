@@ -14,6 +14,7 @@ import { OwnerCooperationModule } from './owner-cooperation/owner-cooperation.mo
 import { RelationshiptypeModule } from './relationshiptype/relationshiptype.module';
 import { RegionModule } from './region/region.module';
 import { DistrictModule } from './district/district.module';
+import { MetroModule } from './metro/metro.module';
 
 
 @Module({
@@ -32,7 +33,8 @@ import { DistrictModule } from './district/district.module';
     OwnerCooperationModule,
     RelationshiptypeModule,
     RegionModule,
-    DistrictModule
+    DistrictModule,
+    MetroModule
   ],
 
   controllers: [],
