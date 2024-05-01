@@ -167,11 +167,11 @@ model Address {
   area                 Area[]
   mahalla              Mahalla[]
   street               Street[]
+  metro                Metro[]
   house_number         Int
   apartment_number     Int
   location             String
   landmark             String
-  metro                Metro[]
   location_description String
 }
 
@@ -225,17 +225,17 @@ model BuildingCharacter {
   id                        Int                 @id @default(autoincrement())
   building_condition        BuildingCondition[]
   building_seria            BuildingSeria[]
-  building_year             DateTime
   wallmaterial              WallMaterial[]
   overlaps                  Overlaps[]
   watersupply               WaterSupply[]
   heating_system            HeatingSystem[]
+  parking                   Parking[]
+  building_year             DateTime
   is_gas                    Boolean
   is_electric               Boolean
   passenger_elevators_count Int
   freight_elevators_count   Int
   is_building_security      Boolean
-  parking                   Parking[]
   is_demolition_planned     String
 }
 
