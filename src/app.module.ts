@@ -15,6 +15,10 @@ import { RelationshiptypeModule } from './relationshiptype/relationshiptype.modu
 import { RegionModule } from './region/region.module';
 import { DistrictModule } from './district/district.module';
 import { MetroModule } from './metro/metro.module';
+import { ObjectModule } from './object/object.module';
+import { AddressModule } from './address/address.module';
+import { BuildingCharacterModule } from './building-character/building-character.module';
+import { RieltorModule } from './rieltor/rieltor.module';
 
 
 @Module({
@@ -34,7 +38,11 @@ import { MetroModule } from './metro/metro.module';
     RelationshiptypeModule,
     RegionModule,
     DistrictModule,
-    MetroModule
+    MetroModule,
+    ObjectModule,
+    AddressModule,
+    BuildingCharacterModule,
+    RieltorModule
   ],
 
   controllers: [],
