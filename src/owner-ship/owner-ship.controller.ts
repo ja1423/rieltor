@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OwnerShipService } from './owner-ship.service';
+import { OwnershipService } from './owner-ship.service';
 import { CreateOwnerShipDto } from './dto/create-owner-ship.dto';
 import { UpdateOwnerShipDto } from './dto/update-owner-ship.dto';
 
 @Controller('owner-ship')
 export class OwnerShipController {
-  constructor(private readonly ownerShipService: OwnerShipService) {}
+  constructor(private readonly ownerShipService: OwnershipService) {}
 
   @Post()
   create(@Body() createOwnerShipDto: CreateOwnerShipDto) {

@@ -12,8 +12,7 @@ export class MetroService {
       data: {
        
         name: createMetroDto.name,
-       
-      },
+       },
     });
   }
 

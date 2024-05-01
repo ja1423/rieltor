@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { RelationshiptypeService } from './relationshiptype.service';
+import { RelationshipTypeService } from './relationshiptype.service';
 import { CreateRelationshiptypeDto } from './dto/create-relationshiptype.dto';
 import { UpdateRelationshiptypeDto } from './dto/update-relationshiptype.dto';
 
 @Controller('relationshiptype')
 export class RelationshiptypeController {
-  constructor(private readonly relationshiptypeService: RelationshiptypeService) {}
+  constructor(private readonly relationshiptypeService: RelationshipTypeService) {}
 
   @Post()
   create(@Body() createRelationshiptypeDto: CreateRelationshiptypeDto) {

@@ -8,11 +8,11 @@ export class CurrencyService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createCurrencyDto: CreateCurrencyDto) {
-    return this.prismaService.currency.create({
-      data: {
-        name: createCurrencyDto.name,
-      },
-    });
+    // return this.prismaService.currency.create({
+    //   // data: {
+    //   //   name: createCurrencyDto.name,
+    //   // },
+    // });
   }
 
   findAll() {

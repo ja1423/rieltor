@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ReasondeletingService } from './reasondeleting.service';
+import { ReasonDeletingService } from './reasondeleting.service';
 import { CreateReasondeletingDto } from './dto/create-reasondeleting.dto';
 import { UpdateReasondeletingDto } from './dto/update-reasondeleting.dto';
 
 @Controller('reasondeleting')
 export class ReasondeletingController {
-  constructor(private readonly reasondeletingService: ReasondeletingService) {}
+  constructor(private readonly reasondeletingService: ReasonDeletingService) {}
 
   @Post()
   create(@Body() createReasondeletingDto: CreateReasondeletingDto) {
