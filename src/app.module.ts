@@ -19,6 +19,7 @@ import { ObjectModule } from './object/object.module';
 import { AddressModule } from './address/address.module';
 import { BuildingCharacterModule } from './building-character/building-character.module';
 import { RieltorModule } from './rieltor/rieltor.module';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
@@ -42,7 +43,8 @@ import { RieltorModule } from './rieltor/rieltor.module';
     ObjectModule,
     AddressModule,
     BuildingCharacterModule,
-    RieltorModule
+    RieltorModule,
+    AdminModule
   ],
 
   controllers: [],

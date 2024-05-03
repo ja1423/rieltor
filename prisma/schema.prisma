@@ -13,6 +13,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Admin {
+  id                   Int     @id @default(autoincrement())
+  full_name            String
+  phone_number         String
+  email                String
+  password             String
+  hashed_password      String
+  hashed_refresh_token String
+  is_active            Boolean
+  is_creator           Boolean
+}
+
 model Object {
   id                  Int     @id @default(autoincrement())
   name                String
