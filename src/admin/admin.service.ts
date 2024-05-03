@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, Logger } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -12,6 +12,7 @@ export class AdminService {
   constructor(
     private readonly prismaService: PrismaService,
     private readonly jwtService: JwtService,
+    private logger: Logger,
   ) {}
   async getTokens(userId: number, email: string): Promise<Tokens> {
     const jwtPayload: JwtPayload = {
@@ -50,6 +51,7 @@ export class AdminService {
   }
 
   async signUp(createUserDto: CreateUserDto, res: Response): Promise<Tokens> {
+    this.logger.debug('signup', AdminService.name);
     const newUser = await this.userService.create(createUserDto);
     if (!newUser) {
       throw new BadRequestException('User already exists');
